@@ -1,0 +1,86 @@
+/* src/styles/main.css */
+
+/* Variables CSS pour les couleurs */
+:root {
+  --primary-bg: #282c34; /* Votre couleur de fond originale */
+  --header-bg: #20232a;
+  --point-color: #00ffea;
+  --text-color: #ffffff;
+  --accent-color: #ff00ff;
+  --button-hover-bg: #ff00ff;
+}
+
+/* Réinitialiser certains styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Définir une police globale et un fond */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-bg); /* Couleur de fond originale */
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px; /* Ajustez selon la hauteur de votre navbar */
+}
+
+/* Conteneur principal de l'application */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Styling de la zone principale */
+.main-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh; /* Assure une hauteur suffisante */
+}
+
+/* Grille de projets */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+/* Section des projets */
+.projects-section {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+/* Ajustements pour les petits écrans */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}

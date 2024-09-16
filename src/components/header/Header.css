@@ -1,0 +1,252 @@
+/* Header.css */
+
+/* Variables CSS pour les couleurs */
+:root {
+  --primary-bg: #282c34;
+  --header-bg: #20232a;
+  --point-color: #00ffea;
+  --text-color: #ffffff;
+  --accent-color: #ff00ff;
+}
+
+/* Styles de base pour la navbar */
+.navbar {
+  position: fixed; /* Fixe la navbar en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, var(--header-bg), #2c2c2c); /* Dégradé subtil */
+  color: var(--text-color);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Assure que la navbar reste au-dessus des autres éléments */
+}
+
+/* Conteneur interne pour aligner les éléments */
+.navbar-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* Pour le z-index des éléments internes */
+}
+
+/* Logo ou titre */
+.logo h1 {
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  z-index: 100; /* Assure que le logo est au-dessus des points */
+}
+
+.Logo h1:hover {
+  color: var(--point-color);
+}
+
+
+/* Liens de navigation */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  z-index: 1; /* Assure que les liens sont au-dessus des points */
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: var(--point-color);
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--point-color);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Menu hamburger */
+.hamburger {
+  display: none; /* Caché par défaut */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 1; /* Assure que le hamburger est au-dessus des points */
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Transformation du hamburger en croix lorsqu'il est actif */
+.hamburger.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Affichage du hamburger sur les petits écrans */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px; /* Ajustez selon la hauteur de votre navbar */
+    left: 0;
+    width: 100%;
+    background-color: var(--header-bg);
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.active {
+    max-height: 300px; /* Ajustez selon le nombre de liens */
+  }
+
+  .nav-links a {
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #444;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Conteneur des points lumineux */
+.points-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Permet de cliquer à travers les points */
+  overflow: hidden;
+  z-index: 0; /* Assure que les points restent derrière */
+}
+
+/* Styles communs pour chaque point lumineux */
+.point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--point-color); /* Couleur lumineuse */
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--point-color), 0 0 20px var(--point-color), 0 0 30px var(--point-color);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  z-index: -50;
+}
+
+.point:hover{
+  background-color: var(--accent-color);
+}
+
+/* Animations pour chaque côté avec différentes durées */
+.point.top {
+  animation-name: moveFromTop;
+  animation-duration: 2.5s;
+}
+
+.point.bottom {
+  animation-name: moveFromBottom;
+  animation-duration: 3s;
+}
+
+.point.left {
+  animation-name: moveFromLeft;
+  animation-duration: 2s;
+}
+
+.point.right {
+  animation-name: moveFromRight;
+  animation-duration: 3.5s;
+}
+
+/* Keyframes pour les différentes directions */
+@keyframes moveFromTop {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveFromBottom {
+  0% {
+    transform: translate(-50%, 200%);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveFromLeft {
+  0% {
+    transform: translate(-100%, -50%);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveFromRight {
+  0% {
+    transform: translate(100%, -50%);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+}

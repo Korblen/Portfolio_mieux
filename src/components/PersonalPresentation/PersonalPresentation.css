@@ -1,0 +1,133 @@
+/* PersonalPresentation.css */
+
+.personal-presentation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    animation: fadeIn 2s ease-out;
+  }
+  
+  .profile-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .presentation-text {
+    flex: 2;
+    padding: 20px;
+    animation: slideIn 1.5s ease-out;
+  }
+  
+  .name {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Animations */
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsivité */
+  
+  @media (max-width: 768px) {
+    .personal-presentation {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .profile-image {
+      width: 200px;
+      height: 200px;
+    }
+  
+    .presentation-text {
+      padding: 10px;
+    }
+  
+    .name {
+      font-size: 2rem;
+    }
+  
+    .title {
+      font-size: 1.2rem;
+    }
+  
+    .description {
+      font-size: 0.95rem;
+    }
+  }
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: var(--point-color);
+  transform: translateY(-3px);
+}
+
+  
