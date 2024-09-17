@@ -1,9 +1,9 @@
 import './PersonalPresentation.css';
-import PropTypes from 'prop-types';
+import { FaLinkedin, FaGithub} from 'react-icons/fa'; // Import des icônes souhaitées
 
-const PersonalPresentation = ({ profileImage, name, title, description, resumeLink, contactLink }) => {
+const PersonalPresentation = ({ profileImage, name, title, description }) => {
   return (
-    <section className="personal-presentation">
+    <section id="accueil" className="personal-presentation" >
       <div className="profile-image-container">
         <img src={profileImage} alt={`${name} Profile`} className="profile-image" />
       </div>
@@ -11,27 +11,23 @@ const PersonalPresentation = ({ profileImage, name, title, description, resumeLi
         <h2 className="name">{name}</h2>
         <h3 className="title">{title}</h3>
         <p className="description">{description}</p>
+        {/* Section des réseaux sociaux */}
+        <div className="social-links">
+          <a href="https://www.linkedin.com/in/malo-bastianelli-66360a285/" target="_blank" rel="noopener noreferrer" className="social-link">
+            <FaLinkedin />
+          </a>
+          <a href="https://github.com/Korblen" target="_blank" rel="noopener noreferrer" className="social-link">
+            <FaGithub />
+          </a>
+          {/* Ajoutez d'autres réseaux sociaux si nécessaire */}
+        </div>
         <div className="action-buttons">
-          <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="action-button">Télécharger CV</a>
-          <a href={contactLink} className="action-button">Me Contacter</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="action-button">Télécharger CV</a>
+          <a href="#" className="action-button">Me Contacter</a>
         </div>
       </div>
     </section>
   );
-};
-
-PersonalPresentation.propTypes = {
-  profileImage: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  resumeLink: PropTypes.string,
-  contactLink: PropTypes.string,
-};
-
-PersonalPresentation.defaultProps = {
-  resumeLink: '#',
-  contactLink: '#',
 };
 
 export default PersonalPresentation;

@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
-    background-color: var(--primary-bg);
+    /* background-color: var(--primary-bg); */
     color: var(--text-color);
     animation: fadeIn 2s ease-out;
   }
@@ -128,6 +128,31 @@
 .action-button:hover {
   background-color: var(--point-color);
   transform: translateY(-3px);
+}
+
+/* Styles pour les liens des réseaux sociaux */
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.social-link {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--point-color);
+  transform: translateY(-3px);
+}
+
+/* Optionnel : Ajouter une animation de rotation sur le survol */
+.social-link:hover svg {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease;
 }
 
   

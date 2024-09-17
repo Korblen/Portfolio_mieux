@@ -1,0 +1,242 @@
+/* src/components/About/About.css */
+
+.about-section {
+    padding: 100px 20px;
+  }
+  
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  
+  .about-content {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .about-content h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .about-content h3 {
+    color: #3498db;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .skills, .interests, .backend-experience, .languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Compétences avec Tooltips */
+  .skill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: default;
+  }
+  
+  .skill-icon {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-right: 10px;
+  }
+  
+  .skill span {
+    font-size: 1rem;
+  }
+  
+  /* Tooltips Styles */
+  .tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position au-dessus de l'icône */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+  
+  .skill:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Centres d'Intérêt avec Tooltips */
+  .interest {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: default;
+  }
+  
+  .interest span {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .interest .tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+  
+  .interest:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Expérience Backend */
+  .backend-experience ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .backend-experience ul li {
+    font-size: 1rem;
+    color: #333;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Langues avec Tooltips */
+  .language-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: default;
+  }
+  
+  .language-flag {
+    width: 24px;
+    height: 16px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    object-fit: cover;
+  }
+  
+  .languages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .languages li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .language-card .tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+  
+  .language-card:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .about-container {
+      padding: 0 10px;
+    }
+  
+    .about-content h2, .about-content p, .about-content h3 {
+      text-align: center;
+    }
+  
+    .skills, .interests, .backend-experience, .languages {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .skill, .interest, .backend-experience ul, .languages ul {
+      width: 80%;
+      justify-content: center;
+    }
+  
+    .backend-experience, .languages {
+      margin-top: 10px;
+    }
+  }
+  

@@ -35,14 +35,14 @@ const Header = ({ title = 'Mon Portfolio' }) => {
   }, []);
 
   return (
-    <header className="navbar">
+    <header className="navbar" id='accueil'>
       <div className="navbar-content">
         <div className="logo">
           <h1>{title}</h1>
         </div>
         <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           <a href="#accueil" onClick={() => setIsMobileMenuOpen(false)}>Accueil</a>
-          <a href="#projets" onClick={() => setIsMobileMenuOpen(false)}>Projets</a>
+          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projets</a>
           <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>À propos</a>
           <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
         </nav>

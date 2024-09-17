@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "imageSrc": "/assets/Raymote_IT.png",
+      "description": "Raymote IT",
+      "altText": "Projet 1",
+      "projectLink": "https://raymote-it-dev.fly.dev/",
+      "repoLink": "https://github.com/annieherieau/RAYMote_IT",
+      "project_text": "Raymote IT est l'application que nous avons développée (avec la Team Raym) pour notre projet final fullstack de la formation The Hacking Project. Nous avons utilisé Ruby on Rails pour la développer. Il s'agit d'un site de formation en ligne pour les personnes cherchant à apprendre le développement. Les utilisateurs peuvent s'inscrire, s'authentifier, suivre des cours et passer des tests pour valider leurs compétences. Les administrateurs peuvent ajouter des cours, des tests et des utilisateurs. Nous avons utilisé des gems comme Devise, RSpec, entre autres, pour faciliter le développement et les tests.",
+      "collaborators": [
+        { "name": "Annie Herieau", "github": "https://github.com/annieherieau" },
+        { "name": "Robena Rasolondramanita", "github": "https://github.com/Robe-Ras" },
+        { "name": "Yann Rezigui", "github": "https://github.com/YannRZG" }
+      ]
+    },
+    {
+      "id": 2,
+      "imageSrc": "/assets/Raym_bicycle.png",
+      "description": "Raym Bicycle",
+      "altText": "Projet 2",
+      "projectLink": "https://raym-marketplace.onrender.com/",
+      "repoLink": "https://github.com/annieherieau/Raym_marketplace",
+      "project_text": "Raym Bicycle est un projet de site e-commerce que nous avons développé (avec la Team Raym) pour notre projet final fullstack de la formation The Hacking Project. Nous avons utilisé Ruby on Rails et React pour le développer. Il s'agit d'un site de vente de vélos en ligne. Les utilisateurs peuvent s'inscrire, s'authentifier, consulter les produits, les ajouter au panier et passer des commandes. Les administrateurs peuvent ajouter des produits, des catégories, des utilisateurs et gérer les commandes. Nous avons utilisé des gems comme Devise, RSpec pour faciliter le développement et les tests, et des librairies comme React Router pour la navigation, sans oublier Tailwind pour le frontend.",
+      "collaborators": [
+        { "name": "Annie Herieau", "github": "https://github.com/annieherieau" },
+        { "name": "Robena Rasolondramanita", "github": "https://github.com/Robe-Ras" },
+        { "name": "Yann Rezigui", "github": "https://github.com/YannRZG" }
+      ]
+    },
+    {
+      "id": 3,
+      "imageSrc": "/assets/Chaton.jpg",
+      "description": "Catysfaction",
+      "altText": "Projet 3",
+      "projectLink": "",
+      "repoLink": "https://github.com/Korblen/Projet_chaton_ultimate",
+      "project_text": "Catysfaction était notre projet de préparation fullstack, il a été fait (en collaboration avec la team Raym) en Ruby on Rails. Il n'est plus en production.",
+      "collaborators": [
+        { "name": "Annie Herieau", "github": "https://github.com/annieherieau" },
+        { "name": "Robena Rasolondramanita", "github": "https://github.com/Robe-Ras" },
+        { "name": "Yann Rezigui", "github": "https://github.com/YannRZG" }
+      ]
+    },
+    {
+      "id": 4,
+      "imageSrc": "/assets/img.webp",
+      "description": "THP student Dashboard",
+      "altText": "Projet 4",
+      "projectLink": "",
+      "repoLink": "https://github.com/evarellapucky/thp_student_dashboard",
+      "project_text": "Ce projet a été réalisé pour The Hacking Project, il s'agit d'une refonte du dashboard étudiant de la formation. Nous avons utilisé React pour le développer (s'agissant d'une refonte du frontend surtout).",
+      "collaborators": [
+        { "name": "Alexia Scherer", "github": "https://github.com/evarellapucky/" },
+        { "name": "Tommy pellerin", "github": "https://github.com/tommy-pellerin" }
+      ]
+    }
+  ]
+  
