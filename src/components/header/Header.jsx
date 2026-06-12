@@ -1,75 +1,54 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import './Header.css';
 
+const navItems = [
+  { href: '#accueil', label: 'Accueil' },
+  { href: '#projects', label: 'Projets' },
+  { href: '#about', label: 'À propos' },
+  { href: '#contact', label: 'Contact' },
+];
+
 const Header = ({ title = 'Mon Portfolio' }) => {
-  const [points, setPoints] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const generatePoint = () => {
-      const id = Date.now() + Math.random(); // Assurez une unicité
-      const sides = ['top', 'bottom', 'left', 'right'];
-      const side = sides[Math.floor(Math.random() * sides.length)];
-      const position = {
-        top: side === 'top' || side === 'bottom' ? `${Math.random() * 100}%` : `${Math.random() * 100}%`,
-        left: side === 'left' || side === 'right' ? `${Math.random() * 100}%` : `${Math.random() * 100}%`,
-      };
-
-      const newPoint = {
-        id,
-        side,
-        position,
-      };
-
-      setPoints((prevPoints) => [...prevPoints, newPoint]);
-
-      // Supprimer le point après la durée de l'animation (3s)
-      setTimeout(() => {
-        setPoints((prevPoints) => prevPoints.filter((point) => point.id !== id));
-      }, 3000);
-    };
-
-    const interval = setInterval(generatePoint, 300); // Génère un point toutes les 500ms
-
-    return () => clearInterval(interval);
-  }, []);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="navbar" id='accueil'>
+    <header className="navbar" id="accueil">
       <div className="navbar-content">
-        <div className="logo">
-          <h1>{title}</h1>
-        </div>
-        <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-          <a href="#accueil" onClick={() => setIsMobileMenuOpen(false)}>Accueil</a>
-          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projets</a>
-          <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>À propos</a>
-          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+        <a className="navbar-brand" href="#accueil" onClick={closeMobileMenu}>
+          <span className="brand-mark">MB</span>
+          <span className="brand-text">{title}</span>
+        </a>
+
+        <nav id="main-navigation" className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`} aria-label="Navigation principale">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMobileMenu}>
+              {item.label}
+            </a>
+          ))}
         </nav>
-        <div
-          className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
+
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="main-navigation"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div>
+          {isMobileMenuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+        </button>
       </div>
-      {/* Conteneur pour les points lumineux */}
-      <div className="points-container">
-        {points.map((point) => (
-          <div
-            key={point.id}
-            className={`point ${point.side}`}
-            style={{
-              top: point.position.top,
-              left: point.position.left,
-            }}
-          ></div>
-        ))}
-      </div>
+      {isMobileMenuOpen && <button className="nav-backdrop" type="button" aria-label="Fermer le menu" onClick={closeMobileMenu} />}
     </header>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string,
 };
 
 export default Header;
