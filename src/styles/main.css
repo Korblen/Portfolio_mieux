@@ -26,7 +26,10 @@ body {
 /* Définir une police globale et un fond */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: var(--primary-bg); /* Couleur de fond originale */
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 255, 234, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(52, 152, 219, 0.14), transparent 30%),
+    var(--primary-bg);
   color: var(--text-color);
   min-height: 100vh;
   display: flex;
@@ -39,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   width: 100%;
 }
 
@@ -50,6 +54,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
   min-height: 80vh; /* Assure une hauteur suffisante */
 }
 
