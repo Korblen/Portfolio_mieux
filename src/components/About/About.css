@@ -14,6 +14,7 @@
   
   .about-content {
     width: 100%;
+    max-width: 100%;
     padding: 0 20px;
   }
   
@@ -42,6 +43,8 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    width: 100%;
+    min-width: 0;
   }
   
   /* Compétences avec Tooltips */
@@ -49,6 +52,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 100%;
     background-color: #ffffff;
     color: #333;
     padding: 10px 15px;
@@ -87,9 +91,11 @@
     font-size: 0.9rem;
   }
   
+  @media (hover: hover) and (pointer: fine) {
   .skill:hover .tooltip {
     visibility: visible;
     opacity: 1;
+  }
   }
   
   /* Centres d'Intérêt avec Tooltips */
@@ -97,6 +103,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 100%;
     background-color: #ffffff;
     padding: 10px 15px;
     border-radius: 8px;
@@ -104,6 +111,12 @@
     cursor: default;
   }
   
+  .interest-icon {
+    font-size: 1.35rem;
+    color: #3498db;
+    margin-right: 10px;
+  }
+
   .interest span {
     font-size: 1rem;
     color: #333;
@@ -128,9 +141,11 @@
     font-size: 0.9rem;
   }
   
+  @media (hover: hover) and (pointer: fine) {
   .interest:hover .tooltip {
     visibility: visible;
     opacity: 1;
+  }
   }
   
   /* Expérience Backend */
@@ -158,27 +173,43 @@
     position: relative;
     display: flex;
     align-items: center;
+    gap: 8px;
     background-color: #ffffff;
     padding: 10px 15px;
+    border: 1px solid transparent;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: default;
+    color: #333;
+    cursor: pointer;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .language-card.is-active {
+    border-color: #3498db;
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.24);
+  }
+
+  .language-card:focus-visible {
+    outline: 2px solid #3498db;
+    outline-offset: 3px;
   }
   
   .language-flag {
     width: 24px;
     height: 16px;
-    margin-right: 8px;
     border: 1px solid #ddd;
     border-radius: 3px;
     object-fit: cover;
   }
-  
+
   .languages ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    width: min(100%, 640px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -210,9 +241,19 @@
     font-size: 0.9rem;
   }
   
+  @media (hover: hover) and (pointer: fine) {
   .language-card:hover .tooltip {
     visibility: visible;
     opacity: 1;
+  }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .skill .tooltip,
+    .interest .tooltip,
+    .language-card .tooltip {
+      display: none;
+    }
   }
   
   /* Responsivité */
@@ -234,9 +275,63 @@
       width: 80%;
       justify-content: center;
     }
-  
+
+    .language-card {
+      min-width: 0;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .language-card span:not(.tooltip) {
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .language-flag {
+      flex: 0 0 auto;
+    }
+
     .backend-experience, .languages {
       margin-top: 10px;
     }
   }
-  
+
+  @media (max-width: 520px) {
+    .about-content {
+      padding: 0;
+    }
+
+    .skills,
+    .interests,
+    .languages {
+      gap: 12px;
+    }
+
+    .skill,
+    .interest,
+    .backend-experience ul,
+    .languages ul {
+      width: 100%;
+    }
+
+    .skill,
+    .interest {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .languages ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .language-card {
+      padding: 10px 8px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .languages ul {
+      grid-template-columns: 1fr;
+    }
+  }

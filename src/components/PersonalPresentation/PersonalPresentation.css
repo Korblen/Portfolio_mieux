@@ -111,17 +111,22 @@
 .action-buttons {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
+  max-width: 100%;
 }
 
 .action-button {
+  min-width: 0;
   padding: 10px 20px;
   background-color: var(--accent-color);
   color: var(--text-color);
   text-decoration: none;
   border-radius: 25px;
   font-size: 0.9rem;
+  text-align: center;
+  overflow-wrap: anywhere;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -134,11 +139,18 @@
 .social-links {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
+  max-width: 100%;
 }
 
 .social-link {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
   color: var(--accent-color);
   font-size: 1.5rem;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -153,6 +165,17 @@
 .social-link:hover svg {
   transform: rotate(360deg);
   transition: transform 0.5s ease;
+}
+
+@media (max-width: 420px) {
+  .action-buttons {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .action-button {
+    width: 100%;
+  }
 }
 
   

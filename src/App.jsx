@@ -6,11 +6,15 @@ import "./styles/main.css";
 import BackgroundAnimation from './components/BackgroundAnimation/BackgroundAnimation';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
+import { translations } from './translations';
+import { updateDocumentSeo } from './seo';
 
 import profileImage from '/assets/profile.jpg';
 
 const App = () => {
   const [projects, setProjects] = useState([]);
+  const [language, setLanguage] = useState('fr');
+  const t = translations[language];
 
   useEffect(() => {
     fetch('/projects.json')
@@ -18,19 +22,24 @@ const App = () => {
       .then(data => setProjects(data));
   }, []);
 
+  useEffect(() => {
+    updateDocumentSeo(language);
+  }, [language]);
+
   return (
     <div className="app-container">
       <BackgroundAnimation />
-      <Header title="Mon Portfolio" />
+      <Header title={t.siteTitle} labels={t.nav} />
       <main className="main-content" >
           <PersonalPresentation
             profileImage={profileImage}
             name="Malo Bastianelli"
-            title="Développeur Full-Stack"
-            description="Je suis un développeur passionné avec une expérience en React, Node.js, et d'autres technologies modernes. J'aime créer des applications web performantes et esthétiques qui offrent une excellente expérience utilisateur."
+            title={t.hero.title}
+            description={t.hero.description}
+            actionLabels={t.hero}
           />
         <section className="projects-section">
-          <h2 className="section-title">Mes Projets</h2>
+          <h2 className="section-title">{t.projects.title}</h2>
           <div className="projects-grid" id="projects">
             {projects.map((project) => (
               <ProjectCard
@@ -40,14 +49,15 @@ const App = () => {
                 altText={project.altText}
                 projectLink={project.projectLink}
                 repoLink={project.repoLink}
-                projectText={project.project_text}
+                projectText={t.projects.items[project.id] || project.project_text}
                 collaborators={project.collaborators}
+                labels={t.projects}
               />
             ))}
           </div>
         </section>
-          <About />
-          <Contact />
+          <About currentLanguage={language} onLanguageChange={setLanguage} labels={t.about} />
+          <Contact labels={t.contact} />
       </main>
     </div>
   );

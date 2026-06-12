@@ -3,8 +3,9 @@ import './Contact.css';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import ReCAPTCHA from 'react-google-recaptcha'; // Import du reCAPTCHA
+import PropTypes from 'prop-types';
 
-const Contact = () => {
+const Contact = ({ labels }) => {
   const form = useRef();
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,7 +20,7 @@ const Contact = () => {
 
     // Vérification que le CAPTCHA est validé
     if (!captchaValue) {
-      alert('Veuillez compléter le CAPTCHA avant d\'envoyer le message.');
+      alert(labels.captchaAlert);
       return;
     }
 
@@ -52,18 +53,18 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2>Contactez-moi</h2>
+          <h2>{labels.title}</h2>
           <form ref={form} onSubmit={sendEmail} className="contact-form">
             <div className="form-group">
-              <label htmlFor="name">Nom</label>
+              <label htmlFor="name">{labels.name}</label>
               <input type="text" id="name" name="from_name" required />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{labels.email}</label>
               <input type="email" id="email" name="from_email" required />
             </div>
             <div className="form-group">
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">{labels.message}</label>
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
             <div className="form-group captcha-group">
@@ -72,14 +73,27 @@ const Contact = () => {
                 onChange={handleCaptchaChange}
               />
             </div>
-            <button type="submit" className="submit-button">Envoyer</button>
+            <button type="submit" className="submit-button">{labels.submit}</button>
           </form>
-          {isSent && <p className="success-message">Votre message a été envoyé avec succès !</p>}
-          {isError && <p className="error-message">Une erreur est survenue. Veuillez réessayer.</p>}
+          {isSent && <p className="success-message">{labels.success}</p>}
+          {isError && <p className="error-message">{labels.error}</p>}
         </motion.div>
       </div>
     </section>
   );
+};
+
+Contact.propTypes = {
+  labels: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    submit: PropTypes.string.isRequired,
+    success: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired,
+    captchaAlert: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Contact;

@@ -1,14 +1,15 @@
 import './PersonalPresentation.css';
-import { FaLinkedin, FaGithub} from 'react-icons/fa'; // Import des icônes souhaitées
+import PropTypes from 'prop-types';
+import { FaLinkedin, FaGithub } from 'react-icons/fa'; // Import des icônes souhaitées
 
-const PersonalPresentation = ({ profileImage, name, title, description }) => {
+const PersonalPresentation = ({ profileImage, name, title, description, actionLabels }) => {
   return (
     <section id="accueil" className="personal-presentation" >
       <div className="profile-image-container">
         <img src={profileImage} alt={`${name} Profile`} className="profile-image" />
       </div>
       <div className="presentation-text">
-        <h2 className="name">{name}</h2>
+        <h1 className="name">{name}</h1>
         <h3 className="title">{title}</h3>
         <p className="description">{description}</p>
         {/* Section des réseaux sociaux */}
@@ -22,12 +23,23 @@ const PersonalPresentation = ({ profileImage, name, title, description }) => {
           {/* Ajoutez d'autres réseaux sociaux si nécessaire */}
         </div>
         <div className="action-buttons">
-          <a href="#" target="_blank" rel="noopener noreferrer" className="action-button">Télécharger CV</a>
-          <a href="#" className="action-button">Me Contacter</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="action-button">{actionLabels.downloadCv}</a>
+          <a href="#contact" className="action-button">{actionLabels.contact}</a>
         </div>
       </div>
     </section>
   );
+};
+
+PersonalPresentation.propTypes = {
+  profileImage: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  actionLabels: PropTypes.shape({
+    downloadCv: PropTypes.string.isRequired,
+    contact: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PersonalPresentation;

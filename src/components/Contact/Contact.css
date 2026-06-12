@@ -70,6 +70,8 @@
   .captcha-group {
     display: flex;
     justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   .submit-button {
@@ -116,6 +118,23 @@
     .submit-button {
       width: 100%;
       align-self: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .contact-section {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+
+    .contact-content {
+      padding: 16px 12px;
+    }
+
+    .captcha-group {
+      transform: scale(0.88);
+      transform-origin: top center;
+      margin-bottom: -10px;
     }
   }
   

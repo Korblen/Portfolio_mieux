@@ -1,11 +1,81 @@
 import './About.css';
-import { FaReact, FaNodeJs, FaPython, FaGem } from 'react-icons/fa';
-import { SiTypescript, SiNextdotjs, SiCplusplus, SiRuby, SiJavascript } from 'react-icons/si';
+import PropTypes from 'prop-types';
+import {
+  FaCloud,
+  FaDatabase,
+  FaKeyboard,
+  FaLanguage,
+  FaLaptopCode,
+  FaLinux,
+  FaMusic,
+  FaNetworkWired,
+  FaPython,
+  FaServer,
+  FaShieldAlt,
+  FaTerminal,
+  FaWindows,
+} from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import japaneseFlag from '/assets/flags/japanese.png';
 import englishFlag from '/assets/flags/english.png';
+import frenchFlag from '/assets/flags/french.png';
+import italianFlag from '/assets/flags/italian.png';
 
-const About = () => {
+const skillIcons = [
+  FaServer,
+  FaNetworkWired,
+  FaShieldAlt,
+  FaLinux,
+  FaWindows,
+  FaPython,
+  FaTerminal,
+  FaDatabase,
+  FaCloud,
+];
+
+const interestIcons = [FaKeyboard, FaMusic, FaLaptopCode, FaLanguage];
+
+const languages = [
+  {
+    code: 'fr',
+    flag: frenchFlag,
+    alt: 'Drapeau Français',
+  },
+  {
+    code: 'en',
+    flag: englishFlag,
+    alt: 'Drapeau Anglais',
+  },
+  {
+    code: 'ja',
+    flag: japaneseFlag,
+    alt: 'Drapeau Japonais',
+  },
+  {
+    code: 'it',
+    flag: italianFlag,
+    alt: 'Drapeau Italien',
+  },
+];
+
+const About = ({ currentLanguage, onLanguageChange, labels }) => {
+  const canHover = typeof window !== 'undefined'
+    && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  const skillMotion = canHover
+    ? {
+        whileHover: { scale: 1.1 },
+        transition: { type: 'spring', stiffness: 300 },
+      }
+    : {};
+
+  const interestMotion = canHover
+    ? {
+        whileHover: { scale: 1.05 },
+        transition: { type: 'spring', stiffness: 300 },
+      }
+    : {};
+
   return (
     <section id="about" >
       <div className="about-container">
@@ -17,167 +87,89 @@ const About = () => {
           viewport={{ once: true }}
         >
           {/* Introduction */}
-          <h2>À Propos de Moi</h2>
-          <p>
-            Bonjour ! Je m'appelle Malo Bastianelli, développeur Full-Stack passionné. Avec une solide expérience en React et Node.js, je crée des applications web performantes et esthétiques qui offrent une excellente expérience utilisateur.
-          </p>
+          <h2>{labels.title}</h2>
+          <p>{labels.intro}</p>
 
           {/* Compétences */}
-          <h3>Compétences</h3>
+          <h3>{labels.skillsTitle}</h3>
           <div className="skills">
-            {/* Exemple de compétence avec tooltip */}
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <FaReact className="skill-icon" />
-              <span>React</span>
-              <span className="tooltip">Développement Frontend avec React</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <FaNodeJs className="skill-icon" />
-              <span>Node.js</span>
-              <span className="tooltip">Développement Backend avec Node.js</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <SiJavascript className="skill-icon" />
-              <span>Javascript</span>
-              <span className="tooltip">Programmation en Javascript</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <SiRuby className="skill-icon" />
-              <span>Ruby</span>
-              <span className="tooltip">Programmation en Ruby</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <FaGem className="skill-icon" />
-              <span>Ruby on Rails</span>
-              <span className="tooltip">Framework Ruby on Rails</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <FaPython className="skill-icon" />
-              <span>Python</span>
-              <span className="tooltip">Programmation en Python</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <SiTypescript className="skill-icon" />
-              <span>TypeScript</span>
-              <span className="tooltip">Développement avec TypeScript</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <SiNextdotjs className="skill-icon" />
-              <span>Next.js</span>
-              <span className="tooltip">Framework Next.js pour React</span>
-            </motion.div>
-            <motion.div
-              className="skill"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <SiCplusplus className="skill-icon" />
-              <span>C & C++</span>
-              <span className="tooltip">Apprentissage de C et C++</span>
-            </motion.div>
+            {labels.skills.map(([label, tooltip], index) => {
+              const Icon = skillIcons[index];
+
+              return (
+                <motion.div
+                  className="skill"
+                  key={label}
+                  {...skillMotion}
+                >
+                  <Icon className="skill-icon" />
+                  <span>{label}</span>
+                  <span className="tooltip">{tooltip}</span>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Centres d'Intérêt */}
-          <h3>Centres d'Intérêt</h3>
+          <h3>{labels.interestsTitle}</h3>
           <div className="interests">
-            <motion.div
-              className="interest"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <span>Design Graphique</span>
-              <span className="tooltip">Création de visuels attrayants</span>
-            </motion.div>
-            <motion.div
-              className="interest"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <span>Développement Web</span>
-              <span className="tooltip">Création de sites et d'applications web</span>
-            </motion.div>
-            <motion.div
-              className="interest"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <span>Gestion de Bases de Données</span>
-              <span className="tooltip">Optimisation et administration des bases de données</span>
-            </motion.div>
-            <motion.div
-              className="interest"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <span>Création d'Interfaces</span>
-              <span className="tooltip">Design d'interfaces utilisateur intuitives</span>
-            </motion.div>
+            {labels.interests.map(([label, tooltip], index) => {
+              const Icon = interestIcons[index];
+
+              return (
+                <motion.div
+                  className="interest"
+                  key={label}
+                  {...interestMotion}
+                >
+                  <Icon className="interest-icon" />
+                  <span>{label}</span>
+                  <span className="tooltip">{tooltip}</span>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Langues */}
-          <h3>Langues</h3>
+          <h3>{labels.languagesTitle}</h3>
           <div className="languages">
             <ul>
-              <li>
-                <motion.div
-                  className="language-card"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <img src={japaneseFlag} alt="Drapeau Japonais" className="language-flag" />
-                  <span>Japonais (Apprentissage en cours)</span>
-                  <span className="tooltip">Compétences en japonais en cours de développement</span>
-                </motion.div>
-              </li>
-              <li>
-                <motion.div
-                  className="language-card"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <img src={englishFlag} alt="Drapeau Anglais" className="language-flag" />
-                  <span>Anglais (Courant)</span>
-                  <span className="tooltip">Maîtrise complète de l'anglais</span>
-                </motion.div>
-              </li>
+              {languages.map((language) => (
+                <li key={language.code}>
+                  <motion.button
+                    className={`language-card ${currentLanguage === language.code ? 'is-active' : ''}`}
+                    type="button"
+                    aria-pressed={currentLanguage === language.code}
+                    onClick={() => onLanguageChange(language.code)}
+                    {...skillMotion}
+                  >
+                    <img src={language.flag} alt={language.alt} className="language-flag" />
+                    <span>{labels.languages[language.code][0]}</span>
+                    <span className="tooltip">{labels.languages[language.code][1]}</span>
+                  </motion.button>
+                </li>
+              ))}
             </ul>
           </div>
         </motion.div>
       </div>
     </section>
   );
+};
+
+About.propTypes = {
+  currentLanguage: PropTypes.string.isRequired,
+  onLanguageChange: PropTypes.func.isRequired,
+  labels: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    intro: PropTypes.string.isRequired,
+    skillsTitle: PropTypes.string.isRequired,
+    interestsTitle: PropTypes.string.isRequired,
+    languagesTitle: PropTypes.string.isRequired,
+    skills: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+    interests: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+    languages: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  }).isRequired,
 };
 
 export default About;

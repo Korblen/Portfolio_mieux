@@ -3,17 +3,16 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import './Header.css';
 
-const navItems = [
-  { href: '#accueil', label: 'Accueil' },
-  { href: '#projects', label: 'Projets' },
-  { href: '#about', label: 'À propos' },
-  { href: '#contact', label: 'Contact' },
-];
-
-const Header = ({ title = 'Mon Portfolio' }) => {
+const Header = ({ title = 'Mon Portfolio', labels }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const navItems = [
+    { href: '#accueil', label: labels.home },
+    { href: '#projects', label: labels.projects },
+    { href: '#about', label: labels.about },
+    { href: '#contact', label: labels.contact },
+  ];
 
   return (
     <header className="navbar" id="accueil">
@@ -23,7 +22,7 @@ const Header = ({ title = 'Mon Portfolio' }) => {
           <span className="brand-text">{title}</span>
         </a>
 
-        <nav id="main-navigation" className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`} aria-label="Navigation principale">
+        <nav id="main-navigation" className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`} aria-label={labels.mainNavigation}>
           {navItems.map((item) => (
             <a key={item.href} href={item.href} onClick={closeMobileMenu}>
               {item.label}
@@ -34,7 +33,7 @@ const Header = ({ title = 'Mon Portfolio' }) => {
         <button
           className="menu-toggle"
           type="button"
-          aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-label={isMobileMenuOpen ? labels.menuClose : labels.menuOpen}
           aria-expanded={isMobileMenuOpen}
           aria-controls="main-navigation"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -42,13 +41,22 @@ const Header = ({ title = 'Mon Portfolio' }) => {
           {isMobileMenuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
         </button>
       </div>
-      {isMobileMenuOpen && <button className="nav-backdrop" type="button" aria-label="Fermer le menu" onClick={closeMobileMenu} />}
+      {isMobileMenuOpen && <button className="nav-backdrop" type="button" aria-label={labels.menuClose} onClick={closeMobileMenu} />}
     </header>
   );
 };
 
 Header.propTypes = {
   title: PropTypes.string,
+  labels: PropTypes.shape({
+    home: PropTypes.string.isRequired,
+    projects: PropTypes.string.isRequired,
+    about: PropTypes.string.isRequired,
+    contact: PropTypes.string.isRequired,
+    menuOpen: PropTypes.string.isRequired,
+    menuClose: PropTypes.string.isRequired,
+    mainNavigation: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Header;

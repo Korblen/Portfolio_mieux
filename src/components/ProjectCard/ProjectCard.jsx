@@ -4,7 +4,7 @@ import { FaExternalLinkAlt, FaGithub, FaUsers } from 'react-icons/fa';
 import './ProjectCard.css';
 import Modal from '../Modal/Modal';
 
-const ProjectCard = ({ imageSrc, description, altText, projectLink, repoLink, projectText, collaborators = [] }) => {
+const ProjectCard = ({ imageSrc, description, altText, projectLink, repoLink, projectText, collaborators = [], labels }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -25,7 +25,7 @@ const ProjectCard = ({ imageSrc, description, altText, projectLink, repoLink, pr
           <span className="project-card-glow" aria-hidden="true" />
         </span>
         <span className="project-card-content">
-          <span className="project-card-eyebrow">Projet</span>
+          <span className="project-card-eyebrow">{labels.cardEyebrow}</span>
           <span className="project-card-title">{description}</span>
           <span className="project-card-summary">{projectText}</span>
           <span className="project-card-meta">
@@ -41,21 +41,21 @@ const ProjectCard = ({ imageSrc, description, altText, projectLink, repoLink, pr
         </span>
       </button>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} closeLabel={labels.closeModal} closeOnTouchContentClick>
         <article className="project-modal">
           <div className="project-modal-visual">
             <img src={imageSrc} alt={altText} />
           </div>
           <div className="project-modal-content">
             <div>
-              <span className="project-modal-label">Projet sélectionné</span>
+              <span className="project-modal-label">{labels.selected}</span>
               <h2>{description}</h2>
               <p>{projectText}</p>
             </div>
 
             {collaborators.length > 0 && (
               <section className="modal-collaborators" aria-labelledby={`${description}-collaborators`}>
-                <h3 id={`${description}-collaborators`}>Collaborateurs</h3>
+                <h3 id={`${description}-collaborators`}>{labels.collaborators}</h3>
                 <ul>
                   {collaborators.map((collab) => (
                     <li key={collab.github}>
@@ -72,13 +72,13 @@ const ProjectCard = ({ imageSrc, description, altText, projectLink, repoLink, pr
               {projectLink && (
                 <a href={projectLink} target="_blank" rel="noopener noreferrer" className="modal-link-button">
                   <FaExternalLinkAlt aria-hidden="true" />
-                  Voir le projet
+                  {labels.viewProject}
                 </a>
               )}
               {repoLink && (
                 <a href={repoLink} target="_blank" rel="noopener noreferrer" className="modal-link-button modal-link-button-secondary">
                   <FaGithub aria-hidden="true" />
-                  Voir le code
+                  {labels.viewCode}
                 </a>
               )}
             </div>
@@ -96,6 +96,14 @@ ProjectCard.propTypes = {
   projectLink: PropTypes.string,
   repoLink: PropTypes.string,
   projectText: PropTypes.string.isRequired,
+  labels: PropTypes.shape({
+    cardEyebrow: PropTypes.string.isRequired,
+    selected: PropTypes.string.isRequired,
+    collaborators: PropTypes.string.isRequired,
+    viewProject: PropTypes.string.isRequired,
+    viewCode: PropTypes.string.isRequired,
+    closeModal: PropTypes.string.isRequired,
+  }).isRequired,
   collaborators: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

@@ -1,0 +1,25 @@
+{
+  "name": "Portfolio Malo Bastianelli",
+  "short_name": "Malo Bastianelli",
+  "description": "Portfolio de Malo Bastianelli, administrateur systèmes et réseaux.",
+  "lang": "fr-FR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#121720",
+  "theme_color": "#121720",
+  "icons": [
+    {
+      "src": "/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
