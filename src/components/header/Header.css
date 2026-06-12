@@ -14,7 +14,8 @@
   position: fixed; /* Fixe la navbar en haut */
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: auto;
   background: linear-gradient(135deg, var(--header-bg), #2c2c2c); /* Dégradé subtil */
   color: var(--text-color);
   padding: 10px 20px;
@@ -113,11 +114,16 @@
 
 /* Affichage du hamburger sur les petits écrans */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
   .nav-links {
-    position: absolute;
+    position: fixed;
     top: 60px; /* Ajustez selon la hauteur de votre navbar */
     left: 0;
-    width: 100%;
+    right: 0;
+    width: auto;
     background-color: var(--header-bg);
     flex-direction: column;
     align-items: center;
@@ -134,6 +140,7 @@
     width: 100%;
     text-align: center;
     border-top: 1px solid #444;
+    padding: 14px 16px;
   }
 
   .hamburger {
