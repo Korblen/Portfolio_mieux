@@ -12,6 +12,15 @@
   padding: 0 20px;
   color: var(--text-color);
   z-index: 1000;
+  transform: translateY(0);
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  will-change: transform;
+}
+
+.navbar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 18px));
 }
 
 .navbar-content {
